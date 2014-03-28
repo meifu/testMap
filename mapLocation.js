@@ -165,7 +165,7 @@ var Locs105 = [
 
 ]
 
-var locationsPoll = [
+window.LocationsPool = [
 	//********* 台北市 *********
 	// 中正區100
 	// {
@@ -381,24 +381,7 @@ var locationsPoll = [
 		post: 204
 		// ,zoom: 13
 	},
-	{
-		lat: 25.1007883,
-		lon: 121.3196048997,
-		vendor: '',
-		title: '七堵服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '基隆市七堵區八德路2之16號',
-		phone: '02-24551333',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 1,
-		post: 204
-	},
+	
 	//********* 新北市 *********
 	//林口區244
 	{
@@ -859,9 +842,10 @@ var html_menus = {
 
 		// console.log('what is getHTML this? ' + Object.keys(self));
 		// console.log('what is getHTML this view_all_key? ' + self.view_all_key);
-		// console.log('what is getHTML this o? ' + Object.keys(self.o));
+		// console.log('what is getHTML this o locations length? ' + this.o.locations.length);
+		// console.log('what is getHTML this ln ' + this.ln);
 		//if more than one location
-		if(this.ln > 1) {
+		if(this.ln >= 1) {
 			html += '<table class="checkbox controls ' + this.o.controls_cssclass + '">';
 
 			//check "view all" link
@@ -909,14 +893,14 @@ var newMap = new Maplace();
 
 $('#tabWrap').organicTabs();
 
-// newMap.AddControl('myList', html_menus);
+newMap.AddControl('myList', html_menus);
 newMap.Load({
-	locations: locationsPoll
-	,generate_controls: false
+	locations: LocsB
+	,generate_controls: true
 	,map_div: '#gmap-menu'
-	// ,controls_type: 'myList'
-	// ,controls_on_map: false
-	// ,controls_div: '#controls1'
+	,controls_type: 'myList'
+	,controls_on_map: false
+	,controls_div: '#controls1'
 });
 
 $('.jSelect .city').bind('click', function(){
@@ -958,7 +942,7 @@ function renderSelection() {
 }
 
 function bindCityClick() {
-	$('.subSelect').find('a').bind('click', function(e) { 
+	$('.subSelect').find('a').on('click', function(e) { 
 		$(e.target).parents('.jSelect').eq(0).find('.city').eq(0).html($(e.target).html());
 		var selections = $(e.target).parents('.subSelect').attr('id');
 		var lastCharacter = selections.substr(selections.length - 1);
@@ -967,19 +951,20 @@ function bindCityClick() {
 		var subSelectionsHTML = '<div class="subsubSelect" id="subArea' + lastCharacter + '">';
 		var areaSelectHTML = '';
 		areas[$(e.target).attr('key')].forEach(function(obj, index) {
-			areaSelectHTML += '<a href="javascript:;" >' + obj.area + '</a>';
+			// console.log('area key: ' + obj.zip);
+			areaSelectHTML += '<a href="javascript:;" key="' + obj.zip + '">' + obj.area + '</a>';
 		});
 		subSelectionsHTML += areaSelectHTML + '</div>';
 		// console.log(subSelectionsHTML);
 		$('#area' + lastCharacter).next('.subsubSelect').remove();
 		$('#area' + lastCharacter).after(subSelectionsHTML);
 		
+		console.log('########check1 ' + LocationsPool[0].title);
 		console.log('current city index: ' + $(e.target).attr('key'));
 		// getCurrentLocation('city', $(e.target).attr('key'));
 		renderNewMap('city', $(e.target).attr('key'));
 		//換了city以後area的第一個也要換
 		$('#area' + lastCharacter).html('選擇區域');
-		
 		bindAreaClick();
 	});	
 }
@@ -987,7 +972,8 @@ function bindCityClick() {
 function bindAreaClick() {
 	$('.subsubSelect').find('a').bind('click', function(e){
 		$(e.target).parents('.jSelect').eq(0).find('.area').eq(0).html($(e.target).html());
-		console.log('user select area: ' + $(e.target).html());
+		console.log('user select area: ' + $(e.target).html() + 'and its zip: ' + $(e.target).attr('key'));
+		renderNewMap('post', $(e.target).attr('key'));
 	});
 }
 
@@ -1001,30 +987,39 @@ function bindAreaClick() {
 // }
 
 renderSelection(1);
-
-
-function renderNewMap(city, number) {
-	var newLocations = [];
+var newLocations = [];
+function renderNewMap(range, number) {
+	newLocations = [];
+	console.log('########check2 ' + LocationsPool[0].title);
 	
-	locationsPoll.forEach(function(obj,index) {
-		// console.log('city: ' + obj[city]);
-		if (obj[city] == number) {
-			console.log('get locations in this city ' + obj['title']);
-			newLocations.push(obj);
+	// locationsPoll.forEach(function(obj,index) {
+	// 	// console.log('index: ' + index + ' - city: ' + obj['city'] + ' - post: ' + obj['post'] );
+	// 	if (obj[range] == number) {
+	// 		// console.log('get locations in this city ' + obj['title']);
+	// 		newLocations.push(obj);
+	// 	}
+	// });
+	// console.log('newLocations: ' + newLocations);
+	for (var i = 0; i < LocationsPool.length; i++) {
+		if (LocationsPool[i][range] == number) {
+			newLocations.push(LocationsPool[i]);
 		}
-	});
-	console.log('newLocations: ' + newLocations.length);
-	// console.log('newMap ' + newMap);
-	newMap.AddControl('myList', html_menus);
-	newMap.Load({
-		locations: newLocations
-		,generate_controls: true
-		,map_div: '#gmap-menu'
-		,controls_type: 'myList'
-		,controls_on_map: false
-		,controls_div: '#controls1'
-	});
-	// newMap.SetLocations(newLocations, true);
+	}
+	console.log('########check3 ' + LocationsPool[0].title);
+	// delete newMap;
+	// newMap = new Maplace();
+	// newMap.AddControl('myList', html_menus);
+	// newMap.Load({
+	// 	locations: newLocations,
+	// 	// generate_controls: true
+	// 	// ,map_div: '#gmap-menu'
+	// 	// ,controls_type: 'myList'
+	// 	// ,controls_on_map: false
+	// 	// ,controls_div: '#controls1'
+	// 	// ,force_generate_controls: true
+	// });
+	newMap.SetLocations(newLocations, true);
+	console.log('########check4 ' + LocationsPool[0].title);
 
 	// if (location == 'area3-2') {
 	// 	newMap.SetLocations(LocsB, true);
