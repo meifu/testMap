@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test google map</title>
+		<link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="tabWrap">
+			
+			<ul class="tabnav">
+				<li class="nav-one"><a href="#fixLoc" class="current">維修據點</a></li>
+				<li class="nav-two"><a href="#beautyLoc">美容據點</a></li>
+				<li class="nav-three last"><a href="#serviceLoc">服務據點</a></li>
+			</ul>
+			<div class="list-wrap">
+				<ul id="fixLoc">
+					<li>
+						<div class="dropdownWrap clearfix">
+							<div class="jSelect">
+								<div class="city" id="city1" data-city="1">選擇縣市</div>
+							</div>
+							<div class="jSelect">
+								<div class="area" id="area1" data-area="1">選擇區域</div>
+							</div>
+							<!-- <label for="city">縣市：</label>
+							<select id="city1" name="city" onchange="listArea(this)">
+								<option value="taipei1">Taipei1</option>
+								<option value="taipei2">Taipei2</option>
+								<option value="taipei3">Taipei3</option>
+							</select>
+
+							<label for="city">區：</label>
+							<select id="area1" name="area" onchange="getFinalSelect()">
+								<option value="area1">Area1</option>
+								<option value="area2">Area2</option>
+								<option value="area3">Area3</option>
+								<option value="area4">Area4</option>
+							</select>			 -->
+						</div>
+						<div id="controls1"></div>
+						<div id="gmap-menu"></div>
+					</li>
+				</ul>
+				<ul id="beautyLoc" class="hide">
+					<li>
+						<div class="dropdownWrap clearfix">
+							<div class="jSelect">
+								<div class="city" id="city2" data-city="2">選擇縣市</div>
+							</div>
+							<div class="jSelect">
+								<div class="area" id="area2" data-area="2">選擇區域</div>
+							</div>
+						</div>
+						<div id="controls2"></div>
+						<div id="gmap-menu"></div>
+					</li>
+				</ul>
+				<ul id="serviceLoc" class="hide">
+					<li>
+						<div class="dropdownWrap clearfix">
+							<div class="jSelect">
+								<div class="city" id="city3" data-city="3">選擇縣市</div>
+							</div>
+							<div class="jSelect">
+								<div class="area" id="area3" data-area="3">選擇區域</div>
+							</div>
+						</div>
+						<div id="controls3"></div>
+						<div id="gmap-menu"></div>
+						
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+		
+		<script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7">
+		</script>
+		<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+		<script src="maplace.min.js"></script>
+		<script src="organicTabs.js"></script>
+		<script src="mapLocation.js"></script>
+		
+	</body>
+</html>
