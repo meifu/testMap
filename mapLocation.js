@@ -935,9 +935,13 @@ $('body').click(function(e){
 
 function renderSelection() {
 	var selectionHtml;
+	var newcities = new Array();
 	for (var i = 1; i < 4; i++) {
+		newcities = [];
+		console.log('filter new cities: ' + getNewCities(i));
+		newcities = getNewCities(i);
 		selectionHtml = '<div class="subSelect" id="subCity' + i + '">';
-		cities.forEach(function(item, index) {
+		newcities.forEach(function(item, index) {
 			selectionHtml += '<a href="javascript:;" key="' + index + '">' + item + '</a>';
 		});
 		selectionHtml += '</div>';
@@ -956,19 +960,23 @@ function bindCityClick() {
 		// console.log('related sub areas: ' + areas[$(e.target).attr('key')]);
 		var subSelectionsHTML = '<div class="subsubSelect" id="subArea' + lastCharacter + '">';
 		var areaSelectHTML = '';
-		areas[$(e.target).attr('key')].forEach(function(obj, index) {
-			// console.log('area key: ' + obj.zip);
+		var newAreas = getNewAreas(lastCharacter, $(e.target).attr('key'));
+
+		newAreas.forEach(function(obj, index) {
 			areaSelectHTML += '<a href="javascript:;" key="' + obj.zip + '">' + obj.area + '</a>';
 		});
+		// areas[$(e.target).attr('key')].forEach(function(obj, index) {
+		// 	areaSelectHTML += '<a href="javascript:;" key="' + obj.zip + '">' + obj.area + '</a>';
+		// });
 		subSelectionsHTML += areaSelectHTML + '</div>';
 		// console.log(subSelectionsHTML);
 		$('#area' + lastCharacter).next('.subsubSelect').remove();
 		$('#area' + lastCharacter).after(subSelectionsHTML);
 
 		// console.log('########check1 ' + LocationsPool[0].title);
-		console.log('current city index: ' + $(e.target).attr('key'));
+		// console.log('current city index: ' + $(e.target).attr('key'));
 		// getCurrentLocation('city', $(e.target).attr('key'));
-		console.log('new locations: ' + getNewLocations('city', $(e.target).attr('key'), getServiceName(lastCharacter)) );
+		// console.log('new locations: ' + getNewLocations('city', $(e.target).attr('key'), getServiceName(lastCharacter)) );
 		renderNewMap('city', $(e.target).attr('key'), getServiceName(lastCharacter));
 		//換了city以後area的第一個也要換
 		$('#area' + lastCharacter).html('選擇區域');
@@ -979,7 +987,7 @@ function bindCityClick() {
 function bindAreaClick(lastCharacter) {
 	$('.subsubSelect').find('a').bind('click', function(e){
 		$(e.target).parents('.jSelect').eq(0).find('.area').eq(0).html($(e.target).html());
-		console.log('user select area: ' + $(e.target).html() + 'and its zip: ' + $(e.target).attr('key'));
+		// console.log('user select area: ' + $(e.target).html() + 'and its zip: ' + $(e.target).attr('key'));
 		renderNewMap('post', $(e.target).attr('key'), getServiceName(lastCharacter));
 	});
 }
@@ -1039,7 +1047,7 @@ function renderNewMap(range, number, service) {
 	// console.log('########check4 ' + LocationsPool[0].title);
 	$('.plan').bind('click', function(e){
 		planRouteClick($(e.target));
-		console.log('click plan ' + $(e.target).html());
+		// console.log('click plan ' + $(e.target).html());
 	});
 
 }
@@ -1062,7 +1070,7 @@ function getLatLonPosition(addressString, callback) {
 	geocoder.geocode({'address': addressString}, function(results, status){
 		if (status == google.maps.GeocoderStatus.OK) {
 			// console.log('address result: ' + results[0].geometry.location);
-			console.log('address result: ' + results[0].geometry.location.lat());
+			// console.log('address result: ' + results[0].geometry.location.lat());
 			resultLocation = {'lat': results[0].geometry.location.lat(), 'lng': results[0].geometry.location.lng()};
 			callback(resultLocation);
 		}
@@ -1075,8 +1083,8 @@ function getLatLonPosition(addressString, callback) {
 // });
 
 function getAddressClick() {
-	console.log('addrConfirm value: ' + $('#inputAddress').val());
-	console.log('addrConfirm value addr: ' + $(this).parents('tr').eq(0).find('.address').eq(0).html());
+	// console.log('addrConfirm value: ' + $('#inputAddress').val());
+	// console.log('addrConfirm value addr: ' + $(this).parents('tr').eq(0).find('.address').eq(0).html());
 	// var fromAddress = $('#inputAddress').val();
 	var fromAddress = '台北市忠孝東路四段287號';
 	var toAddress = $(this).parents('tr').eq(0).find('.address').eq(0).html();
@@ -1094,8 +1102,8 @@ function getAddressClick() {
 
 	function openNew(varName, addressLat, addressLng) {
 		getLatLngOk++;
-		console.log('varName: ' + varName + ', addressLat: ' + addressLat);
-		console.log('getLatLng: ' + getLatLngOk);
+		// console.log('varName: ' + varName + ', addressLat: ' + addressLat);
+		// console.log('getLatLng: ' + getLatLngOk);
 		if (varName == 'fromAddressLatLon') {
 			fromAddressLatLon = {'lat': addressLat, 'lng': addressLng};
 		} else if (varName == 'toAddressLatLon') {
@@ -1117,12 +1125,15 @@ function getServiceName(lastCharacter) {
 	var serviceTarget;
 	switch (lastCharacter) {
 		case '1':
+		case 1:
 			serviceTarget = 'fixService';
 			break;
 		case '2':
+		case 2:
 			serviceTarget = 'beautyService';
 			break;
 		case '3':
+		case 3:
 			serviceTarget = 'showService';
 			break;
 		default:
@@ -1149,3 +1160,53 @@ function getNewLocations(range, number, service) {
 	return newLocations;
 }
 
+function getNewCities(category) {
+	var serviceName = getServiceName(category);
+	var cityNameCache = '';
+	var newCitiesResult = new Array();
+	LocationsPool.forEach(function(obj, index){
+		if (obj[serviceName] == true) {
+			
+			if (obj.city !== cityNameCache) {
+				newCitiesResult.push(cities[obj.city]);
+			}
+			cityNameCache = obj.city;
+
+		}
+	});
+	// console.log('newCitiesResult ' + newCitiesResult);
+	return newCitiesResult;
+}
+
+function getNewAreas(tabIndex, cityKey) {
+	// console.log('service rendered: ' + getServiceName(tabIndex));
+	// console.log('city key rendered: ' + cityKey);
+	// areas.forEach(function(obj,index){
+		// console.log('get new selections: ' + obj.length);
+	// });
+	var newAreasResult = new Array();
+	var areaCache = '';
+	LocationsPool.forEach(function(obj, index){
+		if ( (obj[getServiceName(tabIndex)] == true) && (obj.city == cityKey) ) {
+
+			if (obj.post !== areaCache) {
+				// console.log('new post: ' + getAreaName(cityKey, obj.post));
+				newAreasResult.push( {'zip': obj.post, 'area': getAreaName(cityKey, obj.post)} );
+			}
+			areaCache = obj.post;			
+		}
+	});
+	return newAreasResult;
+}
+
+function getAreaName(cityKey, post) {
+	var areaName = '';
+	areas[cityKey].forEach(function(obj, index) {
+		if (obj.zip === post.toString()) {
+			// console.log('here!!!!!!!!' + obj.area);
+			areaName = obj.area;
+		}
+	});
+
+	return areaName;
+}
