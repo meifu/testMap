@@ -828,7 +828,13 @@ var LocsB = [
 
 var LocsAB = LocsA.concat(LocsB);
 
-var addressInputBoxHtml = '<div class="inputAddressBox" style="width: 250px; height: 80px; background-color: #fff; position: absolute; z-index: 99; margin-left: 55px; padding: 10px;"><p>請輸入您的所在地址：</p><input typd="text" id="inputAddress"><button id="addrConfirm">確定</button></div>';
+var addressInputBoxHtml = '<div class="addressBoxWrap" style="position:relative; top: 0px; left: 55px; width: 250px; z-index: 99;">'
++ '<div class="inputAddressBox" style="width: 250px; height: 80px; background-color: #fff; position: absolute; padding: 10px;">'
++ '<p>請輸入您的所在地址：</p>'
++ '<input typd="text" id="inputAddress">'
++ '<button id="addrConfirm">確定</button>'
++ '</div>'
++ '<a href="#" class="closeBtn" style="position:absolute; top: 0px; right: 0px; text-decoration: none">x</a></div>';
 
 // for customize Maplace menu
 var html_menus = {
@@ -962,6 +968,7 @@ function bindCityClick() {
 		// console.log('########check1 ' + LocationsPool[0].title);
 		console.log('current city index: ' + $(e.target).attr('key'));
 		// getCurrentLocation('city', $(e.target).attr('key'));
+		console.log('new locations: ' + getNewLocations('city', $(e.target).attr('key'), getServiceName(lastCharacter)) );
 		renderNewMap('city', $(e.target).attr('key'), getServiceName(lastCharacter));
 		//換了city以後area的第一個也要換
 		$('#area' + lastCharacter).html('選擇區域');
@@ -1023,19 +1030,29 @@ function renderNewMap(range, number, service) {
 	// 	// ,controls_div: '#controls1'
 	// 	// ,force_generate_controls: true
 	// });
-	newMap.SetLocations(newLocations, true);
+	if (newLocations.length > 0) {
+		newMap.SetLocations(newLocations, true);
+	} else {
+		alert('there is no location');
+	}
+	
 	// console.log('########check4 ' + LocationsPool[0].title);
-
+	$('.plan').bind('click', function(e){
+		planRouteClick($(e.target));
+		console.log('click plan ' + $(e.target).html());
+	});
 
 }
 
-
-$('.plan').bind('click', function(){
-	console.log('click plan ' + $(this).html());
-	$('.inputAddressBox').remove();
-	$(this).after(addressInputBoxHtml);
+function planRouteClick(thisBtn) {
+	$('.addressBoxWrap').remove();
+	thisBtn.after(addressInputBoxHtml);
 	$('#addrConfirm').bind('click', getAddressClick);
-});
+	$('.closeBtn').bind('click', function(){
+		$('.addressBoxWrap').remove();
+	});
+}
+
 
 // 測試google map轉中文地址to經緯度
 var geocoder;
@@ -1093,10 +1110,7 @@ function getAddressClick() {
 			window.open('https://www.google.com.tw/maps/dir/' + fromAddressLatLon.lat + ',' + fromAddressLatLon.lng + '/' + toAddressLatLon.lat + ',' + toAddressLatLon.lng, '_blank');
 		}
 	}
-	// var fromAddressLatLon = getLatLonPosition(fromAddress);
-	// var toAddressLatLon = getLatLonPosition(toAddress);
-	// console.log('fromAddress: ' + fromAddressLatLon);
-	
+
 }
 
 function getServiceName(lastCharacter) {
@@ -1118,5 +1132,20 @@ function getServiceName(lastCharacter) {
 	// console.log('serviceTarget ' + serviceTarget);
 	return serviceTarget;
 		
+}
+
+function getNewLocations(range, number, service) {
+	newLocations = [];
+	for (var i = 0; i < LocationsPool.length; i++) {
+		// if (LocationsPool[i][range] == number) {
+		// 	newLocations.push(LocationsPool[i]);
+		// }
+		if (LocationsPool[i][range] == number) {
+			if (LocationsPool[i][service] == true) {
+				newLocations.push(LocationsPool[i]);
+			}
+		}
+	}
+	return newLocations;
 }
 

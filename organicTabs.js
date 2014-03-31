@@ -21,24 +21,44 @@
             base.$nav.delegate("li > a", "click", function() {
                 var tabClass = $(this).parents('li').eq(0);
                 if (tabClass.hasClass("nav-one")) {
-                    console.log('nav-one');
-
-                } else if (tabClass.hasClass("nav-two")) {
-                    console.log('nav-two');
-
-                    // newMap.Load({
-                    //     locations: LocationsPool
-                    //     ,generate_controls: true
-                    //     ,map_div: '#gmap-menu'
-                    //     ,controls_type: 'myList'
-                    //     ,controls_on_map: false
-                    //     ,controls_div: '#controls1'
-                    // });
+                    // console.log('nav-one');
+                    $('#gmap-menu').css('display', 'block');
+                    $('#pano').css('display', 'none');
                     newMap.SetLocations(LocationsPool, true);
+                    $('#controls1').css('display', 'none');
+                } else if (tabClass.hasClass("nav-two")) {
+                    // console.log('nav-two');
+                    $('#gmap-menu').css('display', 'block');
+                    $('#pano').css('display', 'none');
+                    newMap.SetLocations(LocationsPool, true);
+                    $('#controls1').css('display', 'none');
                 } else if (tabClass.hasClass("nav-three")) {
-                    console.log('nav-three');
+                    // console.log('nav-three');
+                    $('#gmap-menu').css('display', 'block');
+                    $('#pano').css('display', 'none');
                     // renderSelection(3);
                     newMap.SetLocations(LocationsPool, true);
+                    $('#controls1').css('display', 'none');
+                } else if (tabClass.hasClass("nav-four")) {
+                    $('#gmap-menu').css('display', 'none');
+                    $('#pano').css('display', 'block');
+                    var fenway = new google.maps.LatLng(24.973733,121.236494);
+                    var mapOptions = {
+                        center: fenway,
+                        zoom: 14,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+                    var panoramaOptions = {
+                        position: fenway,
+                        pov: {
+                            heading: 34,
+                            pitch: 10,
+                            zoom: 1
+                        }, 
+                    };
+                    var panorama = new  google.maps.StreetViewPanorama(document.getElementById("pano"), panoramaOptions);
+                    map.setStreetView(panorama);
                 }
             
                 // Figure out current list via CSS class
