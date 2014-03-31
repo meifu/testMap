@@ -891,11 +891,11 @@ var html_menus = {
 var newMap = new Maplace();
 // ************* end store variables **************
 
-$('#tabWrap').organicTabs();
 
+$('#controls1').css('display','none');
 newMap.AddControl('myList', html_menus);
 newMap.Load({
-	locations: LocsB
+	locations: LocationsPool
 	,generate_controls: true
 	,map_div: '#gmap-menu'
 	,controls_type: 'myList'
@@ -937,12 +937,12 @@ function renderSelection() {
 		selectionHtml += '</div>';
 		$('#city' + i).after(selectionHtml);
 	}
-	
 	bindCityClick();
 }
 
 function bindCityClick() {
 	$('.subSelect').find('a').on('click', function(e) { 
+		$('#controls1').css('display', 'block');
 		$(e.target).parents('.jSelect').eq(0).find('.city').eq(0).html($(e.target).html());
 		var selections = $(e.target).parents('.subSelect').attr('id');
 		var lastCharacter = selections.substr(selections.length - 1);
@@ -958,22 +958,22 @@ function bindCityClick() {
 		// console.log(subSelectionsHTML);
 		$('#area' + lastCharacter).next('.subsubSelect').remove();
 		$('#area' + lastCharacter).after(subSelectionsHTML);
-		
-		console.log('########check1 ' + LocationsPool[0].title);
+
+		// console.log('########check1 ' + LocationsPool[0].title);
 		console.log('current city index: ' + $(e.target).attr('key'));
 		// getCurrentLocation('city', $(e.target).attr('key'));
-		renderNewMap('city', $(e.target).attr('key'));
+		renderNewMap('city', $(e.target).attr('key'), getServiceName(lastCharacter));
 		//換了city以後area的第一個也要換
 		$('#area' + lastCharacter).html('選擇區域');
-		bindAreaClick();
+		bindAreaClick(lastCharacter);
 	});	
 }
 
-function bindAreaClick() {
+function bindAreaClick(lastCharacter) {
 	$('.subsubSelect').find('a').bind('click', function(e){
 		$(e.target).parents('.jSelect').eq(0).find('.area').eq(0).html($(e.target).html());
 		console.log('user select area: ' + $(e.target).html() + 'and its zip: ' + $(e.target).attr('key'));
-		renderNewMap('post', $(e.target).attr('key'));
+		renderNewMap('post', $(e.target).attr('key'), getServiceName(lastCharacter));
 	});
 }
 
@@ -988,9 +988,9 @@ function bindAreaClick() {
 
 renderSelection(1);
 var newLocations = [];
-function renderNewMap(range, number) {
+function renderNewMap(range, number, service) {
 	newLocations = [];
-	console.log('########check2 ' + LocationsPool[0].title);
+	// console.log('########check2 ' + LocationsPool[0].title);
 	
 	// locationsPoll.forEach(function(obj,index) {
 	// 	// console.log('index: ' + index + ' - city: ' + obj['city'] + ' - post: ' + obj['post'] );
@@ -1001,11 +1001,16 @@ function renderNewMap(range, number) {
 	// });
 	// console.log('newLocations: ' + newLocations);
 	for (var i = 0; i < LocationsPool.length; i++) {
+		// if (LocationsPool[i][range] == number) {
+		// 	newLocations.push(LocationsPool[i]);
+		// }
 		if (LocationsPool[i][range] == number) {
-			newLocations.push(LocationsPool[i]);
+			if (LocationsPool[i][service] == true) {
+				newLocations.push(LocationsPool[i]);
+			}
 		}
 	}
-	console.log('########check3 ' + LocationsPool[0].title);
+	// console.log('########check3 ' + LocationsPool[0].title);
 	// delete newMap;
 	// newMap = new Maplace();
 	// newMap.AddControl('myList', html_menus);
@@ -1019,18 +1024,9 @@ function renderNewMap(range, number) {
 	// 	// ,force_generate_controls: true
 	// });
 	newMap.SetLocations(newLocations, true);
-	console.log('########check4 ' + LocationsPool[0].title);
+	// console.log('########check4 ' + LocationsPool[0].title);
 
-	// if (location == 'area3-2') {
-	// 	newMap.SetLocations(LocsB, true);
-	// 	// console.log('new map: ' + $('.plan').length);
-	// 	$('.plan').bind('click', function(){
-	// 		console.log('click plan again');
-	// 		$('.inputAddressBox').remove();
-	// 		$(this).after(addressInputBoxHtml);
-	// 		$('#addrConfirm').bind('click', getAddressClick);
-	// 	});
-	// }
+
 }
 
 
@@ -1101,5 +1097,26 @@ function getAddressClick() {
 	// var toAddressLatLon = getLatLonPosition(toAddress);
 	// console.log('fromAddress: ' + fromAddressLatLon);
 	
+}
+
+function getServiceName(lastCharacter) {
+	var serviceTarget;
+	switch (lastCharacter) {
+		case '1':
+			serviceTarget = 'fixService';
+			break;
+		case '2':
+			serviceTarget = 'beautyService';
+			break;
+		case '3':
+			serviceTarget = 'showService';
+			break;
+		default:
+		serviceTarget = '';
+			break;
+	}
+	// console.log('serviceTarget ' + serviceTarget);
+	return serviceTarget;
+		
 }
 

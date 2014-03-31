@@ -19,17 +19,27 @@
             }); 
             
             base.$nav.delegate("li > a", "click", function() {
-                // var tabClass = $(this).parents('li').eq(0);
-                // if (tabClass.hasClass("nav-one")) {
-                //     console.log('nav-one');
+                var tabClass = $(this).parents('li').eq(0);
+                if (tabClass.hasClass("nav-one")) {
+                    console.log('nav-one');
 
-                // } else if (tabClass.hasClass("nav-two")) {
-                //     console.log('nav-two');
-                //     renderSelection(2);
-                // } else if (tabClass.hasClass("nav-three")) {
-                //     console.log('nav-three');
-                //     renderSelection(3);
-                // }
+                } else if (tabClass.hasClass("nav-two")) {
+                    console.log('nav-two');
+
+                    // newMap.Load({
+                    //     locations: LocationsPool
+                    //     ,generate_controls: true
+                    //     ,map_div: '#gmap-menu'
+                    //     ,controls_type: 'myList'
+                    //     ,controls_on_map: false
+                    //     ,controls_div: '#controls1'
+                    // });
+                    newMap.SetLocations(LocationsPool, true);
+                } else if (tabClass.hasClass("nav-three")) {
+                    console.log('nav-three');
+                    // renderSelection(3);
+                    newMap.SetLocations(LocationsPool, true);
+                }
             
                 // Figure out current list via CSS class
                 var curList = base.$el.find("a.current").attr("href").substring(1),
@@ -85,5 +95,7 @@
             (new $.organicTabs(this, options));
         });
     };
+
+    $('#tabWrap').organicTabs();
     
 })(jQuery);
