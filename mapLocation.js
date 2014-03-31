@@ -177,7 +177,7 @@ window.LocationsPool = [
 		lon: 121.54076910000003,
 		vendor: '',
 		title: '濱江服務廠',
-		html: '<h3>Content A1</h3>',
+		html: '<h3>濱江服務廠</h3>',
 		// icon: 'map_icon.png',
 		address: '台北市中山區濱江街213號',
 		phone: '02-25175000',
@@ -992,28 +992,12 @@ function bindAreaClick(lastCharacter) {
 	});
 }
 
-// function getCurrentLocation(range, number) {
-// 	locationsPoll.forEach(function(obj, index){
-// 		if (obj[range] == number) {
-// 			console.log('get location!!!!!!!');
-// 			//render new map
-// 		}
-// 	});
-// }
 
 renderSelection(1);
 var newLocations = [];
 function renderNewMap(range, number, service) {
 	newLocations = [];
 	// console.log('########check2 ' + LocationsPool[0].title);
-	
-	// locationsPoll.forEach(function(obj,index) {
-	// 	// console.log('index: ' + index + ' - city: ' + obj['city'] + ' - post: ' + obj['post'] );
-	// 	if (obj[range] == number) {
-	// 		// console.log('get locations in this city ' + obj['title']);
-	// 		newLocations.push(obj);
-	// 	}
-	// });
 	// console.log('newLocations: ' + newLocations);
 	for (var i = 0; i < LocationsPool.length; i++) {
 		// if (LocationsPool[i][range] == number) {
@@ -1026,18 +1010,7 @@ function renderNewMap(range, number, service) {
 		}
 	}
 	// console.log('########check3 ' + LocationsPool[0].title);
-	// delete newMap;
-	// newMap = new Maplace();
-	// newMap.AddControl('myList', html_menus);
-	// newMap.Load({
-	// 	locations: newLocations,
-	// 	// generate_controls: true
-	// 	// ,map_div: '#gmap-menu'
-	// 	// ,controls_type: 'myList'
-	// 	// ,controls_on_map: false
-	// 	// ,controls_div: '#controls1'
-	// 	// ,force_generate_controls: true
-	// });
+	
 	if (newLocations.length > 0) {
 		newMap.SetLocations(newLocations, true);
 	} else {
@@ -1179,11 +1152,7 @@ function getNewCities(category) {
 }
 
 function getNewAreas(tabIndex, cityKey) {
-	// console.log('service rendered: ' + getServiceName(tabIndex));
-	// console.log('city key rendered: ' + cityKey);
-	// areas.forEach(function(obj,index){
-		// console.log('get new selections: ' + obj.length);
-	// });
+	
 	var newAreasResult = new Array();
 	var areaCache = '';
 	LocationsPool.forEach(function(obj, index){
