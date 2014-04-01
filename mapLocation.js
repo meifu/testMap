@@ -1,10 +1,7 @@
 //********* store variables **************
-var cities = ['台北市','基隆市','新北市','宜蘭縣','新竹市','新竹縣','桃園縣','苗栗縣','台中市','彰化縣','南投縣','嘉義市','嘉義縣','雲林縣','台南市','高雄市','屏東縣','台東縣','花蓮縣'];
-// var areas = [
-// 	['area1-1', 'area1-2', 'area1-3'],
-// 	['area2-1', 'area2-2', 'area2-3'],
-// 	['area3-1', 'area3-2', 'area3-3']
-// ];
+// var cities = ['台北市','基隆市','新北市','宜蘭縣','新竹市','新竹縣','桃園縣','苗栗縣','台中市','彰化縣','南投縣','嘉義市','嘉義縣','雲林縣','台南市','高雄市','屏東縣','台東縣','花蓮縣'];
+var cities = {'0': '台北市', '1': '基隆市', '2': '新北市', '3': '宜蘭縣', '4': '新竹市', '5': '新竹縣', '6': '桃園縣', '7': '苗栗縣', '8': '台中市', '9': '彰化縣', '10': '南投縣', '11': '嘉義市', '12': '嘉義縣', '13': '雲林縣', '14': '台南市', '15': '高雄市', '16': '屏東縣', '17': '台東縣', '18': '花蓮縣'};
+
 var areas = [
     new Array(
          // {  zip: '100',area: '中正區' }
@@ -79,6 +76,7 @@ var areas = [
         ,{  zip: '420',area: '豐原區' }
         ,{  zip: '427',area: '潭子區' }
         ,{  zip: '428',area: '大雅區' }
+        ,{  zip: '433',area: '沙鹿區' }
         ,{  zip: '435',area: '梧棲區' }
         ,{  zip: '437',area: '大甲區' }
     ),
@@ -151,682 +149,220 @@ var areas = [
         ,{  zip: '981',area: '玉里鎮' }
     )
 ];
-
-var Locs104 = [
-	{
-		
-	}
-];
-
-var Locs105 = [
-	{
-		
-	},
-
-]
-
-window.LocationsPool = [
-	//********* 台北市 *********
-	// 中正區100
-	// {
-
-	// },
-	// 中山區104
-	{
-		lat: 25.0727106,
-		lon: 121.54076910000003,
-		vendor: '',
-		title: '濱江服務廠',
-		html: '<h3>濱江服務廠</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市中山區濱江街213號',
-		phone: '02-25175000',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 0,
-		post: 104
-	},
-	// 松山區105
-	{
-		lat: 25.068115,
-		lon: 121.567893,
-		vendor: '',
-		title: '撫遠服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市松山區撫遠街423號',
-		phone: '02-27607267',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: false,
-		city: 0,
-		post: 105
-	},
-	{
-		lat: 25.0482524,
-		lon: 121.55989669999997,
-		vendor: '',
-		title: '八德服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市松山區八德路四段68號',
-		phone: '02-27621088',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 0,
-		post: 105
-	},
-	// 大安區106
-	{
-		lat: 25.0306864,
-		lon: 121.54382340000006,
-		vendor: '',
-		title: '瑞安服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市大安區復興南路二段65號',
-		phone: '02-27075355',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: false,
-		city: 0,
-		post: 106
-	},
-	{
-		lat: 25.0212357,
-		lon: 121.55560479999997,
-		vendor: '',
-		title: '大安服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市大安區和平東路三段268號',
-		phone: '02-23776365',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: false,
-		city: 0,
-		post: 106
-	},
-	// 萬華區108
-	{
-		lat: 25.0312498,
-		lon: 121.4973503,
-		vendor: '',
-		title: '萬華服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市萬華區莒光路328號',
-		phone: '02-23062607',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 0,
-		post: 108
-	},
-	// 信義區110
-	// {},
-	// 士林區111
-	{
-		lat: 25.1045947,
-		lon: 121.5183246,
-		vendor: '',
-		title: '文林服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市士林區文林北路43號',
-		phone: '02-28234998',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 0,
-		post: 111
-	},
-	// 北投區112
-	{
-		lat: 25.126846,
-		lon: 121.49774389999993,
-		vendor: '',
-		title: '北投服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市北投區大業路265號',
-		phone: '02-28952060',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 0,
-		post: 112
-	},
-	// 內湖區114
-	{
-		lat: 25.0686119,
-		lon: 121.5827693,
-		vendor: '',
-		title: '民權服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市內湖區民權東路六段23號1樓',
-		phone: '02-27915617',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 0,
-		post: 114
-	},
-	// 南港區115
-	{
-		lat: 25.0483594,
-		lon: 121.58500170000002,
-		vendor: '',
-		title: '忠孝服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市南港區忠孝東路六段101號',
-		phone: '02-26531855',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: false,
-		showService: false,
-		city: 0,
-		post: 115
-	},
-	//********* 基隆市 *********
-	{
-		lat: 25.1007883,
-		lon: 121.71960409999997,
-		vendor: '',
-		title: '七堵服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '基隆市七堵區八德路2之16號',
-		phone: '02-24551333',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 1,
-		post: 204
-		// ,zoom: 13
-	},
-	
-	//********* 新北市 *********
-	//林口區244
-	{
-		lat: 25.0716924,
-		lon: 121.3746658,
-		vendor: '',
-		title: '林口服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市林口區文化一路一段98號',
-		phone: '02-26003800',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 244
-	},
-	//三峽區237
-	{
-		lat: 24.9308581,
-		lon: 121.38294159999998,
-		vendor: '',
-		title: '三峽服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市三峽區介壽路一段365號',
-		phone: '02-26731000',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: false,
-		showService: false,
-		city: 2,
-		post: 237
-	},
-	//中和區235
-	{
-		lat: 25.005227,
-		lon: 121.48216879999995,
-		vendor: '',
-		title: '中和服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市中和區中山路二段594號',
-		phone: '02-82212372',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 235
-	},
-	//新莊區242
-	{
-		lat: 25.0310605,
-		lon: 121.42913380000005,
-		vendor: '',
-		title: '輔大服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市新莊區中正路562號',
-		phone: '02-29031177',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 242
-	},
-	{
-		lat: 25.0429101,
-		lon: 121.46031600000003,
-		vendor: '',
-		title: '新莊服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市新莊區思源路40-1號',
-		phone: '02-89935288',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 242
-	},
-	//土城區236
-	{
-		lat: 24.998428,
-		lon: 121.42312300000003,
-		vendor: '',
-		title: '土城服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市土城區大安路85號',
-		phone: '02-22681158',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 236
-	},
-	//淡水區251
-	{
-		lat: 25.1408169,
-		lon: 121.45996890000004,
-		vendor: '',
-		title: '淡水服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市淡水區民權路39號',
-		phone: '02-28090092',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 251
-	},
-	//新店區231
-	{
-		lat: 24.977451, 
-		lon: 121.545344,
-		vendor: '',
-		title: '新店服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市新店區中興路三段9號',
-		phone: '02-89199922',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 231
-	},
-	//汐止區221
-	{
-		lat: 25.028847, 
-		lon: 121.4716204,
-		vendor: '',
-		title: '汐止服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市汐止區大同路一段154',
-		phone: '02-86432888',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 221
-	},
-	//板橋區220
-	{
-		lat: 25.028847, 
-		lon: 121.4716204,
-		vendor: '',
-		title: '板橋服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市板橋區文化路2段266號',
-		phone: '02-82523006',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 220
-	},
-	//三重區241
-	{
-		lat: 25.0877249, 
-		lon: 121.484009,
-		vendor: '',
-		title: '集賢服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新北市三重區集賢路１９５號',
-		phone: '02-28576633',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 2,
-		post: 241
-	},
-	//********* 宜蘭縣 *********
-	//宜蘭市260
-	{
-		lat: 24.7666226, 
-		lon: 121.76145969999993,
-		vendor: '',
-		title: '宜蘭服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '宜蘭縣宜蘭市宜興路三段28號',
-		phone: '03-9289989',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 3,
-		post: 260
-	},
-	//羅東鎮265
-	{
-		lat: 24.6864379, 
-		lon: 121.76875389999998,
-		vendor: '',
-		title: '羅東服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '宜蘭縣羅東鎮純精路三段416號',
-		phone: '03-9530123',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 3,
-		post: 265
-	},
-	//********* 新竹市 *********
-	//東區300
-	{
-		lat: 24.7812926, 
-		lon: 121.00633990000006,
-		vendor: '',
-		title: '園區服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新竹市東區科學工業園區新安路200號',
-		phone: '03-5612434',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: false,
-		showService: false,
-		city: 4,
-		post: 300
-	},
-	//東區300
-	{
-		lat: 24.816305, 
-		lon: 120.99329260000002,
-		vendor: '',
-		title: '新竹服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新竹市東區經國路一段二號',
-		phone: '03-5331188',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 4,
-		post: 300
-	},
-	//香山區300
-	{
-		lat: 24.7912737, 
-		lon: 120.93795380000006,
-		vendor: '',
-		title: '香山服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新竹市香山區中華路4段468號',
-		phone: '03-5301682',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: false,
-		showService: true,
-		city: 4,
-		post: 300
-	},
-	//********* 新竹縣 *********
-	//竹北市302
-	{
-		lat: 24.8495621, 
-		lon: 121.00495479999995,
-		vendor: '',
-		title: '竹北服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新竹縣竹北市中華路752號',
-		phone: '03-5514216',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: true,
-		showService: true,
-		city: 5,
-		post: 302
-	},
-	//竹東鎮310
-	{
-		lat: 24.754685, 
-		lon: 121.07135489999996,
-		vendor: '',
-		title: '竹東服務廠',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '新竹縣竹東鎮中興路一段169號',
-		phone: '03-5831818',
-		time: '10:00~21:00',
-		services: '汽車維修、定期保養',
-		note: '',
-		fixService: true,
-		beautyService: false,
-		showService: true,
-		city: 5,
-		post: 310
-	}
-];
-
-var Locs = [];
      
 var selectResult = '';
 
-var LocsA = [
-	{
-		lat: 45.9,
-		lon: 10.9,
-		title: 'Title A1',
-		html: '<h3>Content A1</h3>',
-		// icon: 'map_icon.png',
-		address: '台北市羅斯福路二段9號',
-		phone: '02-23314567',
-		time: '10:00~21:00'
+window.Locations = {
+	"fixService": {
+		//台北
+		"0": {
+			// 中山區104
+			"104": [{
+				lat: 25.0727106,
+				lon: 121.54076910000003,
+				vendor: '',
+				title: '濱江服務廠',
+				html: '',
+				// icon: 'map_icon.png',
+				address: '台北市中山區濱江街213號',
+				phone: '02-25175000',
+				time: '10:00~21:00',
+				services: '汽車維修、定期保養',
+				note: '',
+				fixService: true,
+				beautyService: true,
+				showService: true,
+				city: 0,
+				post: 104
+			}],
+			// 松山區105
+			"105": [{
+				lat: 25.068115,
+				lon: 121.567893,
+				vendor: '',
+				title: '撫遠服務廠',
+				html: '',
+				// icon: 'map_icon.png',
+				address: '台北市松山區撫遠街423號',
+				phone: '02-27607267',
+				time: '10:00~21:00',
+				services: '汽車維修、定期保養',
+				note: '',
+				fixService: true,
+				beautyService: true,
+				showService: false,
+				city: 0,
+				post: 105
+			},
+			{
+				lat: 25.0482524,
+				lon: 121.55989669999997,
+				vendor: '',
+				title: '八德服務廠',
+				html: '',
+				// icon: 'map_icon.png',
+				address: '台北市松山區八德路四段68號',
+				phone: '02-27621088',
+				time: '10:00~21:00',
+				services: '汽車維修、定期保養',
+				note: '',
+				fixService: true,
+				beautyService: true,
+				showService: true,
+				city: 0,
+				post: 105
+			}],
+			// 大安區106
+			"106": [{
+				lat: 25.0306864,
+				lon: 121.54382340000006,
+				vendor: '',
+				title: '瑞安服務廠',
+				html: '',
+				// icon: 'map_icon.png',
+				address: '台北市大安區復興南路二段65號',
+				phone: '02-27075355',
+				time: '10:00~21:00',
+				services: '汽車維修、定期保養',
+				note: '',
+				fixService: true,
+				beautyService: true,
+				showService: false,
+				city: 0,
+				post: 106
+			},
+			{
+				lat: 25.0212357,
+				lon: 121.55560479999997,
+				vendor: '',
+				title: '大安服務廠',
+				html: '',
+				// icon: 'map_icon.png',
+				address: '台北市大安區和平東路三段268號',
+				phone: '02-23776365',
+				time: '10:00~21:00',
+				services: '汽車維修、定期保養',
+				note: '',
+				fixService: true,
+				beautyService: true,
+				showService: false,
+				city: 0,
+				post: 106
+			}],
+			// 萬華區108
+			"108": [{
+				lat: 25.0312498,
+				lon: 121.4973503,
+				vendor: '',
+				title: '萬華服務廠',
+				html: '',
+				// icon: 'map_icon.png',
+				address: '台北市萬華區莒光路328號',
+				phone: '02-23062607',
+				time: '10:00~21:00',
+				services: '汽車維修、定期保養',
+				note: '',
+				fixService: true,
+				beautyService: true,
+				showService: true,
+				city: 0,
+				post: 108
+			}],
+			// 士林區111
+			"111": [{
+				lat: 25.1045947,
+				lon: 121.5183246,
+				vendor: '',
+				title: '文林服務廠',
+				html: '',
+				// icon: 'map_icon.png',
+				address: '台北市士林區文林北路43號',
+				phone: '02-28234998',
+				time: '10:00~21:00',
+				services: '汽車維修、定期保養',
+				note: '',
+				fixService: true,
+				beautyService: true,
+				showService: true,
+				city: 0,
+				post: 111
+			}],
+			// 北投區112
+			"112": [{
+					lat: 25.126846,
+					lon: 121.49774389999993,
+					vendor: '',
+					title: '北投服務廠',
+					html: '',
+					// icon: 'map_icon.png',
+					address: '台北市北投區大業路265號',
+					phone: '02-28952060',
+					time: '10:00~21:00',
+					services: '汽車維修、定期保養',
+					note: '',
+					fixService: true,
+					beautyService: true,
+					showService: true,
+					city: 0,
+					post: 112
+			}],
+			// 內湖區114
+			"114": [{
+					lat: 25.0686119,
+					lon: 121.5827693,
+					vendor: '',
+					title: '民權服務廠',
+					html: '',
+					// icon: 'map_icon.png',
+					address: '台北市內湖區民權東路六段23號1樓',
+					phone: '02-27915617',
+					time: '10:00~21:00',
+					services: '汽車維修、定期保養',
+					note: '',
+					fixService: true,
+					beautyService: true,
+					showService: true,
+					city: 0,
+					post: 114
+			}],
+			// 南港區115
+			"115": [{
+					lat: 25.0483594,
+					lon: 121.58500170000002,
+					vendor: '',
+					title: '忠孝服務廠',
+					html: '',
+					// icon: 'map_icon.png',
+					address: '台北市南港區忠孝東路六段101號',
+					phone: '02-26531855',
+					time: '10:00~21:00',
+					services: '汽車維修、定期保養',
+					note: '',
+					fixService: true,
+					beautyService: false,
+					showService: false,
+					city: 0,
+					post: 115
+			}]
+
+		},
+		"1": {
+
+		},
+		"2": {
+
+		},
+		"3": {
+
+		}
 	},
-	{
-		lat: 44.8,
-		lon: 1.7,
-		title: 'Title B1',
-		html: '<h3>Content B1</h3>',
-		// icon: 'map_icon.png',
-		// ,show_infowindow: false
-		address: '台北市羅斯福路二段9號',
-		phone: '02-23314567',
-		time: '10:00~21:00'
+	"beautyService": {
+
 	},
-	{
-		lat: 51.5,
-		lon: -1.1,
-		title: 'Title C1',
-		html: [
-				'<h3>Content C1</h3>',
-				'<p>Lorem Ipsum..</p>'
-		].join(''),
-		// icon: 'map_icon.png',
-		address: '台北市羅斯福路二段9號',
-		phone: '02-23314567',
-		time: '10:00~21:00'
+	"showService": {
+
 	}
-
-];
-
-var LocsB = [
-	{
-		lat: 52.1,
-		lon: 11.3,
-		title: 'Title A2',
-		html: [
-				'<h3>Content A2</h3>',
-				'<p>Lorem Ipsum..</p>'
-		].join(''),
-		zoom: 8,
-		address: '台北市羅斯福路二段9號',
-		phone: '02-23314567',
-		time: '10:00~21:00'
-	},
-	{
-		lat: 51.2,
-		lon: 22.2,
-		title: 'Title B2',
-		html: [
-				'<h3>Content B2</h3>',
-				'<p>Lorem Ipsum..</p>'
-		].join(''),
-		zoom: 8,
-		address: '台北市羅斯福路二段9號',
-		phone: '02-23314567',
-		time: '10:00~21:00'
-	},
-	{
-		lat: 49.4,
-		lon: 35.9,
-		title: 'Title C2',
-		html: [
-				'<h3>Content C2</h3>',
-				'<p>Lorem Ipsum..</p>'
-		].join(''),
-		zoom: 4,
-		address: '台北市羅斯福路二段9號',
-		phone: '02-23314567',
-		time: '10:00~21:00'
-	},
-	{
-		lat: 47.8,
-		lon: 15.6,
-		title: 'Title D2',
-		html: [
-				'<h3>Content D2</h3>',
-				'<p>Lorem Ipsum..</p>'
-		].join(''),
-		zoom: 6,
-		address: '台北市羅斯福路二段9號',
-		phone: '02-23314567',
-		time: '10:00~21:00'
-	}
-];
-
-var LocsAB = LocsA.concat(LocsB);
+}
 
 var addressInputBoxHtml = '<div class="addressBoxWrap" style="position:relative; top: 0px; left: 55px; width: 250px; z-index: 99;">'
 + '<div class="inputAddressBox" style="width: 250px; height: 80px; background-color: #fff; position: absolute; padding: 10px;">'
@@ -896,12 +432,12 @@ var html_menus = {
 
 var newMap = new Maplace();
 // ************* end store variables **************
-
+// generateHTML();
 
 $('#controls1').css('display','none');
 newMap.AddControl('myList', html_menus);
 newMap.Load({
-	locations: LocationsPool
+	locations: Locations['fixService']['0']['104']
 	,generate_controls: true
 	,map_div: '#gmap-menu'
 	,controls_type: 'myList'
@@ -999,13 +535,13 @@ function renderNewMap(range, number, service) {
 	newLocations = [];
 	// console.log('########check2 ' + LocationsPool[0].title);
 	// console.log('newLocations: ' + newLocations);
-	for (var i = 0; i < LocationsPool.length; i++) {
+	for (var i = 0; i < Locations.length; i++) {
 		// if (LocationsPool[i][range] == number) {
 		// 	newLocations.push(LocationsPool[i]);
 		// }
-		if (LocationsPool[i][range] == number) {
-			if (LocationsPool[i][service] == true) {
-				newLocations.push(LocationsPool[i]);
+		if (Locations[i][range] == number) {
+			if (Locations[i][service] == true) {
+				newLocations.push(Locations[i]);
 			}
 		}
 	}
@@ -1120,13 +656,13 @@ function getServiceName(lastCharacter) {
 
 function getNewLocations(range, number, service) {
 	newLocations = [];
-	for (var i = 0; i < LocationsPool.length; i++) {
+	for (var i = 0; i < Locations.length; i++) {
 		// if (LocationsPool[i][range] == number) {
 		// 	newLocations.push(LocationsPool[i]);
 		// }
-		if (LocationsPool[i][range] == number) {
-			if (LocationsPool[i][service] == true) {
-				newLocations.push(LocationsPool[i]);
+		if (Locations[i][range] == number) {
+			if (Locations[i][service] == true) {
+				newLocations.push(Locations[i]);
 			}
 		}
 	}
@@ -1134,20 +670,41 @@ function getNewLocations(range, number, service) {
 }
 
 function getNewCities(category) {
-	var serviceName = getServiceName(category);
-	var cityNameCache = '';
+	// var serviceName = getServiceName(category);
+	// var cityNameCache = '';
 	var newCitiesResult = new Array();
-	LocationsPool.forEach(function(obj, index){
-		if (obj[serviceName] == true) {
+	// LocationsPool.forEach(function(obj, index){
+	// 	if (obj[serviceName] == true) {
 			
-			if (obj.city !== cityNameCache) {
-				newCitiesResult.push(cities[obj.city]);
-			}
-			cityNameCache = obj.city;
+	// 		if (obj.city !== cityNameCache) {
+	// 			newCitiesResult.push(cities[obj.city]);
+	// 		}
+	// 		cityNameCache = obj.city;
 
-		}
-	});
-	// console.log('newCitiesResult ' + newCitiesResult);
+	// 	}
+	// });
+
+	var serviceName = '';
+	switch (category) {
+		case 1: 
+			serviceName = 'fixService';
+			break;
+		case 2: 
+			serviceName = 'beautyService';
+			break;
+		case 3:
+			serviceName = 'showService';
+			break;
+		default: 
+			serviceName = '';
+			break;
+	};
+	
+	console.log('city ' + Object.keys(Locations[serviceName]));
+	console.log('city ' + cities[Object.keys(Locations[serviceName])]);
+	newCitiesResult += cities[Object.keys(Locations[serviceName])];
+	// console.log('new Locations ' + newCitiesResult);
+
 	return newCitiesResult;
 }
 
@@ -1155,7 +712,7 @@ function getNewAreas(tabIndex, cityKey) {
 	
 	var newAreasResult = new Array();
 	var areaCache = '';
-	LocationsPool.forEach(function(obj, index){
+	Locations.forEach(function(obj, index){
 		if ( (obj[getServiceName(tabIndex)] == true) && (obj.city == cityKey) ) {
 
 			if (obj.post !== areaCache) {
@@ -1178,4 +735,13 @@ function getAreaName(cityKey, post) {
 	});
 
 	return areaName;
+}
+
+function generateHTML() {
+	var htmlContent = '';
+	// LocationsPool.forEach(function(obj, index) {
+	// 	htmlContent = '<h3>' + obj.title + '</h3><p>' + obj.address + '</p><p>' + obj.phone + '</p>';
+	// 	obj.html = htmlContent;
+	// });
+	console.log('test ' + Object.keys(Locations)[0]);
 }
