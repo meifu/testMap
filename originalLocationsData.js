@@ -1,4 +1,155 @@
-window.LocationsPool = [
+// var cities = ['台北市','基隆市','新北市','宜蘭縣','新竹市','新竹縣','桃園縣','苗栗縣','台中市','彰化縣','南投縣','嘉義市','嘉義縣','雲林縣','台南市','高雄市','屏東縣','台東縣','花蓮縣'];
+var cities = {'0': '台北市', '1': '基隆市', '2': '新北市', '3': '宜蘭縣', '4': '新竹市', '5': '新竹縣', '6': '桃園縣', '7': '苗栗縣', '8': '台中市', '9': '彰化縣', '10': '南投縣', '11': '嘉義市', '12': '嘉義縣', '13': '雲林縣', '14': '台南市', '15': '高雄市', '16': '屏東縣', '17': '台東縣', '18': '花蓮縣'};
+
+var areas = [
+    new Array(
+         // {  zip: '100',area: '中正區' }
+         {  zip: '104',area: '中山區' }
+        ,{  zip: '105',area: '松山區' }
+        ,{  zip: '106',area: '大安區' }
+        ,{  zip: '108',area: '萬華區' }
+        // ,{  zip: '110',area: '信義區' }
+        ,{  zip: '111',area: '士林區' }
+        ,{  zip: '112',area: '北投區' }
+        ,{  zip: '114',area: '內湖區' }
+        ,{  zip: '115',area: '南港區' }
+        // ,{  zip: '116',area: '文山區' }
+    ),
+    new Array(
+         {  zip: '204',area: '七堵區' }
+    ),
+    new Array(
+         {  zip: '220',area: '板橋區' }
+        ,{  zip: '221',area: '汐止區' }
+        // ,{  zip: '222',area: '深坑區' }
+        ,{  zip: '231',area: '新店區' }
+        // ,{  zip: '234',area: '永和區' }
+        ,{  zip: '235',area: '中和區' }
+        ,{  zip: '236',area: '土城區' }
+        ,{  zip: '237',area: '三峽區' }
+        // ,{  zip: '238',area: '樹林區' }
+        // ,{  zip: '239',area: '鶯歌區' }
+        ,{  zip: '241',area: '三重區' }
+        ,{  zip: '242',area: '新莊區' }
+        ,{  zip: '244',area: '林口區' }
+        // ,{  zip: '247',area: '蘆洲區' }
+        ,{  zip: '251',area: '淡水區' }
+
+    ),
+    new Array(
+         {  zip: '260',area: '宜蘭市' }
+        // ,{  zip: '268',area: '五結鄉' }
+        ,{  zip: '265',area: '羅東鎮' }
+    ),
+    new Array(
+         {  zip: '300',area: '新竹市' }
+    ),
+    new Array(
+         {  zip: '302',area: '竹北市' }
+        ,{  zip: '310',area: '竹東鎮' }
+    ),
+    new Array(
+         {  zip: '320',area: '中壢市' }
+        ,{  zip: '324',area: '平鎮市' }
+        ,{  zip: '325',area: '龍潭鄉' }
+        ,{  zip: '326',area: '楊梅鎮' }
+        ,{  zip: '330',area: '桃園市' }
+        ,{  zip: '333',area: '龜山鄉' }
+        ,{  zip: '334',area: '八德市' }
+        ,{  zip: '338',area: '蘆竹鄉' }
+    ),
+    new Array(
+         {  zip: '351',area: '頭份鎮' }
+        ,{  zip: '358',area: '苑裡鎮' }
+        ,{  zip: '360',area: '苗栗市' }
+    ),
+    new Array(
+         {  zip: '401',area: '東區' }
+        ,{  zip: '402',area: '南區' }
+        ,{  zip: '403',area: '西區' }
+        ,{  zip: '404',area: '北區' }
+        ,{  zip: '406',area: '北屯區' }
+        ,{  zip: '407',area: '西屯區' }
+        ,{  zip: '411',area: '太平區' }
+        ,{  zip: '412',area: '大里區' }
+        ,{  zip: '420',area: '豐原區' }
+        ,{  zip: '427',area: '潭子區' }
+        ,{  zip: '428',area: '大雅區' }
+        ,{  zip: '433',area: '沙鹿區' }
+        ,{  zip: '435',area: '梧棲區' }
+        ,{  zip: '437',area: '大甲區' }
+    ),
+    new Array(
+         {  zip: '500',area: '彰化市' }
+        ,{  zip: '503',area: '花壇鄉' }
+        ,{  zip: '506',area: '福興鄉' }
+        ,{  zip: '514',area: '溪湖鎮' }
+        ,{  zip: '515',area: '大村鄉' }
+        ,{  zip: '522',area: '田尾鄉' }
+        ,{  zip: '526',area: '二林鎮' }
+    ),
+    new Array(
+         {  zip: '540',area: '南投市' }
+        ,{  zip: '542',area: '草屯鎮' }
+        ,{  zip: '545',area: '埔里鎮' }
+        ,{  zip: '557',area: '竹山鎮' }
+    ),
+    new Array(
+         {  zip: '600',area: '嘉義市' }
+    ),
+    new Array(
+         {  zip: '613',area: '朴子市' }
+        ,{  zip: '621',area: '民雄鄉' }
+    ),
+    new Array(
+         {  zip: '630',area: '斗南鎮' }
+        ,{  zip: '632',area: '虎尾鎮' }
+        ,{  zip: '637',area: '崙背鄉' }
+        ,{  zip: '640',area: '斗六市' }
+        ,{  zip: '651',area: '北港鎮' }
+    ),
+    new Array(
+         {  zip: '701',area: '東區' }
+        ,{  zip: '708',area: '安平區' }
+        ,{  zip: '709',area: '安南區' }
+        ,{  zip: '710',area: '永康區' }
+        ,{  zip: '711',area: '歸仁區' }
+        ,{  zip: '720',area: '官田區' }
+        ,{  zip: '722',area: '佳里區' }
+        ,{  zip: '730',area: '新營區' }
+        ,{  zip: '741',area: '善化區' }
+    ),
+    new Array(
+         {  zip: '800',area: '新興區' }
+        ,{  zip: '802',area: '苓雅區' }
+        ,{  zip: '806',area: '前鎮區' }
+        ,{  zip: '807',area: '三民區' }
+        ,{  zip: '811',area: '楠梓區' }
+        ,{  zip: '812',area: '小港區' }
+        ,{  zip: '820',area: '岡山區' }
+        ,{  zip: '829',area: '湖內區' }
+        ,{  zip: '830',area: '鳳山區' }
+        ,{  zip: '831',area: '大寮區' }
+        ,{  zip: '842',area: '旗山區' }
+    ),
+    new Array(
+         {  zip: '900',area: '屏東市' }
+        ,{  zip: '904',area: '九如鄉' }
+        ,{  zip: '909',area: '麟洛鄉' }
+        ,{  zip: '920',area: '潮州鎮' }
+        ,{  zip: '928',area: '東港鎮' }
+        ,{  zip: '946',area: '恆春鎮' }
+    ),
+    new Array(
+        {  zip: '950',area: '台東市' }
+    ),
+    new Array(
+         {  zip: '973',area: '吉安鄉' }
+        ,{  zip: '981',area: '玉里鎮' }
+    )
+];
+
+var LocationsPool = [
 	//********* 台北市 *********
 	// 中正區100
 	// {
@@ -8,7 +159,7 @@ window.LocationsPool = [
 	
 	{
 		lat: 25.0727106,
-		lon: 121.54076910000003,
+		lng: 121.54076910000003,
 		vendor: '',
 		title: '濱江服務廠',
 		html: '',
@@ -27,7 +178,7 @@ window.LocationsPool = [
 	// 松山區105
 	{
 		lat: 25.068115,
-		lon: 121.567893,
+		lng: 121.567893,
 		vendor: '',
 		title: '撫遠服務廠',
 		html: '',
@@ -45,7 +196,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 25.0482524,
-		lon: 121.55989669999997,
+		lng: 121.55989669999997,
 		vendor: '',
 		title: '八德服務廠',
 		html: '',
@@ -64,7 +215,7 @@ window.LocationsPool = [
 	// 大安區106
 	{
 		lat: 25.0306864,
-		lon: 121.54382340000006,
+		lng: 121.54382340000006,
 		vendor: '',
 		title: '瑞安服務廠',
 		html: '',
@@ -82,7 +233,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 25.0212357,
-		lon: 121.55560479999997,
+		lng: 121.55560479999997,
 		vendor: '',
 		title: '大安服務廠',
 		html: '',
@@ -101,7 +252,7 @@ window.LocationsPool = [
 	// 萬華區108
 	{
 		lat: 25.0312498,
-		lon: 121.4973503,
+		lng: 121.4973503,
 		vendor: '',
 		title: '萬華服務廠',
 		html: '',
@@ -122,7 +273,7 @@ window.LocationsPool = [
 	// 士林區111
 	{
 		lat: 25.1045947,
-		lon: 121.5183246,
+		lng: 121.5183246,
 		vendor: '',
 		title: '文林服務廠',
 		html: '',
@@ -141,7 +292,7 @@ window.LocationsPool = [
 	// 北投區112
 	{
 		lat: 25.126846,
-		lon: 121.49774389999993,
+		lng: 121.49774389999993,
 		vendor: '',
 		title: '北投服務廠',
 		html: '',
@@ -160,7 +311,7 @@ window.LocationsPool = [
 	// 內湖區114
 	{
 		lat: 25.0686119,
-		lon: 121.5827693,
+		lng: 121.5827693,
 		vendor: '',
 		title: '民權服務廠',
 		html: '',
@@ -179,7 +330,7 @@ window.LocationsPool = [
 	// 南港區115
 	{
 		lat: 25.0483594,
-		lon: 121.58500170000002,
+		lng: 121.58500170000002,
 		vendor: '',
 		title: '忠孝服務廠',
 		html: '',
@@ -198,7 +349,7 @@ window.LocationsPool = [
 	//********* 基隆市 *********
 	{
 		lat: 25.1007883,
-		lon: 121.71960409999997,
+		lng: 121.71960409999997,
 		vendor: '',
 		title: '七堵服務廠',
 		html: '',
@@ -220,7 +371,7 @@ window.LocationsPool = [
 	//林口區244
 	{
 		lat: 25.0716924,
-		lon: 121.3746658,
+		lng: 121.3746658,
 		vendor: '',
 		title: '林口服務廠',
 		html: '',
@@ -239,7 +390,7 @@ window.LocationsPool = [
 	//三峽區237
 	{
 		lat: 24.9308581,
-		lon: 121.38294159999998,
+		lng: 121.38294159999998,
 		vendor: '',
 		title: '三峽服務廠',
 		html: '',
@@ -258,7 +409,7 @@ window.LocationsPool = [
 	//中和區235
 	{
 		lat: 25.005227,
-		lon: 121.48216879999995,
+		lng: 121.48216879999995,
 		vendor: '',
 		title: '中和服務廠',
 		html: '',
@@ -277,7 +428,7 @@ window.LocationsPool = [
 	//新莊區242
 	{
 		lat: 25.0310605,
-		lon: 121.42913380000005,
+		lng: 121.42913380000005,
 		vendor: '',
 		title: '輔大服務廠',
 		html: '',
@@ -295,7 +446,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 25.0429101,
-		lon: 121.46031600000003,
+		lng: 121.46031600000003,
 		vendor: '',
 		title: '新莊服務廠',
 		html: '',
@@ -314,7 +465,7 @@ window.LocationsPool = [
 	//土城區236
 	{
 		lat: 24.998428,
-		lon: 121.42312300000003,
+		lng: 121.42312300000003,
 		vendor: '',
 		title: '土城服務廠',
 		html: '',
@@ -333,7 +484,7 @@ window.LocationsPool = [
 	//淡水區251
 	{
 		lat: 25.1408169,
-		lon: 121.45996890000004,
+		lng: 121.45996890000004,
 		vendor: '',
 		title: '淡水服務廠',
 		html: '',
@@ -352,7 +503,7 @@ window.LocationsPool = [
 	//新店區231
 	{
 		lat: 24.977451, 
-		lon: 121.545344,
+		lng: 121.545344,
 		vendor: '',
 		title: '新店服務廠',
 		html: '',
@@ -371,7 +522,7 @@ window.LocationsPool = [
 	//汐止區221
 	{
 		lat: 25.028847, 
-		lon: 121.4716204,
+		lng: 121.4716204,
 		vendor: '',
 		title: '汐止服務廠',
 		html: '',
@@ -390,7 +541,7 @@ window.LocationsPool = [
 	//板橋區220
 	{
 		lat: 25.028847, 
-		lon: 121.4716204,
+		lng: 121.4716204,
 		vendor: '',
 		title: '板橋服務廠',
 		html: '',
@@ -409,7 +560,7 @@ window.LocationsPool = [
 	//三重區241
 	{
 		lat: 25.0877249, 
-		lon: 121.484009,
+		lng: 121.484009,
 		vendor: '',
 		title: '集賢服務廠',
 		html: '',
@@ -429,7 +580,7 @@ window.LocationsPool = [
 	//宜蘭市260
 	{
 		lat: 24.7666226, 
-		lon: 121.76145969999993,
+		lng: 121.76145969999993,
 		vendor: '',
 		title: '宜蘭服務廠',
 		html: '',
@@ -448,7 +599,7 @@ window.LocationsPool = [
 	//羅東鎮265
 	{
 		lat: 24.6864379, 
-		lon: 121.76875389999998,
+		lng: 121.76875389999998,
 		vendor: '',
 		title: '羅東服務廠',
 		html: '',
@@ -468,7 +619,7 @@ window.LocationsPool = [
 	//東區300
 	{
 		lat: 24.7812926, 
-		lon: 121.00633990000006,
+		lng: 121.00633990000006,
 		vendor: '',
 		title: '園區服務廠',
 		html: '',
@@ -487,7 +638,7 @@ window.LocationsPool = [
 	//東區300
 	{
 		lat: 24.816305, 
-		lon: 120.99329260000002,
+		lng: 120.99329260000002,
 		vendor: '',
 		title: '新竹服務廠',
 		html: '',
@@ -506,7 +657,7 @@ window.LocationsPool = [
 	//香山區300
 	{
 		lat: 24.7912737, 
-		lon: 120.93795380000006,
+		lng: 120.93795380000006,
 		vendor: '',
 		title: '香山服務廠',
 		html: '',
@@ -526,7 +677,7 @@ window.LocationsPool = [
 	//竹北市302
 	{
 		lat: 24.8495621, 
-		lon: 121.00495479999995,
+		lng: 121.00495479999995,
 		vendor: '',
 		title: '竹北服務廠',
 		html: '',
@@ -545,7 +696,7 @@ window.LocationsPool = [
 	//竹東鎮310
 	{
 		lat: 24.754685, 
-		lon: 121.07135489999996,
+		lng: 121.07135489999996,
 		vendor: '',
 		title: '竹東服務廠',
 		html: '',
@@ -564,7 +715,7 @@ window.LocationsPool = [
 	//中壢市320
 	{
 		lat: 24.9669726, 
-		lon: 121.23636550000003,
+		lng: 121.23636550000003,
 		vendor: '',
 		title: '北中壢服務廠',
 		html: '',
@@ -582,7 +733,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 24.9430792, 
-		lon: 121.2277441,
+		lng: 121.2277441,
 		vendor: '',
 		title: '中壢服務廠',
 		html: '',
@@ -601,7 +752,7 @@ window.LocationsPool = [
 	//八德市334
 	{
 		lat: 24.9384168, 
-		lon: 121.29748810000001,
+		lng: 121.29748810000001,
 		vendor: '',
 		title: '八德服務廠',
 		html: '',
@@ -620,7 +771,7 @@ window.LocationsPool = [
 	//蘆竹鄉338
 	{
 		lat: 25.0587902, 
-		lon: 121.2757398,
+		lng: 121.2757398,
 		vendor: '',
 		title: '南崁服務廠',
 		html: '',
@@ -638,7 +789,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 25.0587902, 
-		lon: 121.2757398,
+		lng: 121.2757398,
 		vendor: '',
 		title: '南崁服務廠',
 		html: '',
@@ -657,7 +808,7 @@ window.LocationsPool = [
 	//楊梅市326
 	{
 		lat: 24.9075437, 
-		lon: 121.15152809999995,
+		lng: 121.15152809999995,
 		vendor: '',
 		title: '楊梅服務廠',
 		html: '',
@@ -676,7 +827,7 @@ window.LocationsPool = [
 	//龍潭鄉325
 	{
 		lat: 24.8662702,
-		lon: 121.21005839999998,
+		lng: 121.21005839999998,
 		vendor: '',
 		title: '龍潭服務廠',
 		html: '',
@@ -695,7 +846,7 @@ window.LocationsPool = [
 	//桃園市330
 	{
 		lat: 24.9799334,
-		lon: 121.27339740000002,
+		lng: 121.27339740000002,
 		vendor: '',
 		title: '桃園服務廠',
 		html: '',
@@ -713,7 +864,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 24.9782328,
-		lon: 121.32231449999995,
+		lng: 121.32231449999995,
 		vendor: '',
 		title: '桃鶯服務廠',
 		html: '',
@@ -732,7 +883,7 @@ window.LocationsPool = [
 	//平鎮市324
 	{
 		lat: 24.9317568,
-		lon: 121.19719520000001,
+		lng: 121.19719520000001,
 		vendor: '',
 		title: '平鎮服務廠',
 		html: '',
@@ -752,7 +903,7 @@ window.LocationsPool = [
 	//頭份鎮351
 	{
 		lat: 24.9317568,
-		lon: 121.19719520000001,
+		lng: 121.19719520000001,
 		vendor: '',
 		title: '頭份服務廠',
 		html: '',
@@ -771,7 +922,7 @@ window.LocationsPool = [
 	//苗栗市360
 	{
 		lat: 24.5744043,
-		lon: 120.8172194,
+		lng: 120.8172194,
 		vendor: '',
 		title: '苗栗服務廠',
 		html: '',
@@ -790,7 +941,7 @@ window.LocationsPool = [
 	//苑裡鎮358
 	{
 		lat: 24.4310444,
-		lon: 120.64576139999997,
+		lng: 120.64576139999997,
 		vendor: '',
 		title: '苑裡服務廠',
 		html: '',
@@ -810,7 +961,7 @@ window.LocationsPool = [
 	//北區404
 	{
 		lat: 24.1525321,
-		lon: 120.68246670000008,
+		lng: 120.68246670000008,
 		vendor: '',
 		title: '中台中服務廠',
 		html: '',
@@ -829,7 +980,7 @@ window.LocationsPool = [
 	//北屯區406
 	{
 		lat: 24.1820584,
-		lon:  120.68314729999997,
+		lng:  120.68314729999997,
 		vendor: '',
 		title: '松竹服務廠',
 		html: '',
@@ -848,7 +999,7 @@ window.LocationsPool = [
 	//西屯區407
 	{
 		lat: 24.162115,
-		lon: 120.63261080000007,
+		lng: 120.63261080000007,
 		vendor: '',
 		title: '市政服務廠',
 		html: '',
@@ -866,7 +1017,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 24.1849412,
-		lon: 120.61690420000002,
+		lng: 120.61690420000002,
 		vendor: '',
 		title: '西屯服務廠',
 		html: '',
@@ -884,7 +1035,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 24.1666887,
-		lon: 120.60125270000003,
+		lng: 120.60125270000003,
 		vendor: '',
 		title: '工業區服務廠',
 		html: '',
@@ -902,7 +1053,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 24.1723588,
-		lon: 120.66439860000003,
+		lng: 120.66439860000003,
 		vendor: '',
 		title: '北台中服務廠',
 		html: '',
@@ -921,7 +1072,7 @@ window.LocationsPool = [
 	//東區401
 	{
 		lat: 24.1313254,
-		lon: 120.70359389999999,
+		lng: 120.70359389999999,
 		vendor: '',
 		title: '東台中服務廠',
 		html: '',
@@ -940,7 +1091,7 @@ window.LocationsPool = [
 	//烏日區414
 	{
 		lat: 24.1082721,
-		lon: 120.63902380000002,
+		lng: 120.63902380000002,
 		vendor: '',
 		title: '南台中服務廠',
 		html: '',
@@ -959,7 +1110,7 @@ window.LocationsPool = [
 	//沙鹿區433
 	{
 		lat: 24.2308848,
-		lon: 120.57392430000004,
+		lng: 120.57392430000004,
 		vendor: '',
 		title: '沙鹿服務廠',
 		html: '',
@@ -978,7 +1129,7 @@ window.LocationsPool = [
 	//大里區412
 	{
 		lat: 24.0983361,
-		lon: 120.68288899999993,
+		lng: 120.68288899999993,
 		vendor: '',
 		title: '大里服務廠',
 		html: '',
@@ -998,7 +1149,7 @@ window.LocationsPool = [
 	//大村鄉515
 	{
 		lat: 23.9901213,
-		lon: 120.56310580000002,
+		lng: 120.56310580000002,
 		vendor: '',
 		title: '員林服務廠',
 		html: '',
@@ -1018,7 +1169,7 @@ window.LocationsPool = [
 	//彰化市500
 	{
 		lat: 24.0863223,
-		lon: 120.53243910000003,
+		lng: 120.53243910000003,
 		vendor: '',
 		title: '彰化服務廠',
 		html: '',
@@ -1038,7 +1189,7 @@ window.LocationsPool = [
 	//溪湖鎮514
 	{
 		lat: 23.9545356,
-		lon: 120.49056180000002,
+		lng: 120.49056180000002,
 		vendor: '',
 		title: '溪湖服務廠',
 		html: '',
@@ -1058,7 +1209,7 @@ window.LocationsPool = [
 	//溪湖鎮506
 	{
 		lat: 24.0469705,
-		lon: 120.44869979999999,
+		lng: 120.44869979999999,
 		vendor: '',
 		title: '鹿港服務廠',
 		html: '',
@@ -1079,7 +1230,7 @@ window.LocationsPool = [
 	//埔里鎮545
 	{
 		lat: 23.9696907,
-		lon: 120.95347820000006,
+		lng: 120.95347820000006,
 		vendor: '',
 		title: '埔里服務廠',
 		html: '',
@@ -1099,7 +1250,7 @@ window.LocationsPool = [
 	//埔里鎮557
 	{
 		lat: 23.7603863,
-		lon: 120.68429300000003,
+		lng: 120.68429300000003,
 		vendor: '',
 		title: '竹山服務廠',
 		html: '',
@@ -1119,7 +1270,7 @@ window.LocationsPool = [
 	//南投市540
 	{
 		lat: 23.7603863,
-		lon: 120.68429300000003,
+		lng: 120.68429300000003,
 		vendor: '',
 		title: '南投服務廠',
 		html: '',
@@ -1140,7 +1291,7 @@ window.LocationsPool = [
 	//西區600
 	{
 		lat: 23.4668086,
-		lon: 120.42630209999993,
+		lng: 120.42630209999993,
 		vendor: '',
 		title: '博賢服務廠',
 		html: '',
@@ -1160,7 +1311,7 @@ window.LocationsPool = [
 	//東區600
 	{
 		lat: 23.4668086,
-		lon: 120.42630209999993,
+		lng: 120.42630209999993,
 		vendor: '',
 		title: '忠孝服務廠',
 		html: '',
@@ -1181,7 +1332,7 @@ window.LocationsPool = [
 	//朴子市613
 	{
 		lat: 23.4643004,
-		lon: 120.26536920000001,
+		lng: 120.26536920000001,
 		vendor: '',
 		title: '朴子服務廠',
 		html: '',
@@ -1202,7 +1353,7 @@ window.LocationsPool = [
 	//北港鎮651
 	{
 		lat: 23.5876704,
-		lon: 120.30454780000002,
+		lng: 120.30454780000002,
 		vendor: '',
 		title: '北港服務廠',
 		html: '',
@@ -1222,7 +1373,7 @@ window.LocationsPool = [
 	//北港鎮630
 	{
 		lat: 23.6945887,
-		lon: 120.46545630000003,
+		lng: 120.46545630000003,
 		vendor: '',
 		title: '斗南服務廠',
 		html: '',
@@ -1242,7 +1393,7 @@ window.LocationsPool = [
 	//斗六市640
 	{
 		lat: 23.7017467,
-		lon: 120.55249070000002,
+		lng: 120.55249070000002,
 		vendor: '',
 		title: '斗六服務廠',
 		html: '',
@@ -1263,7 +1414,7 @@ window.LocationsPool = [
 	//善化區741
 	{
 		lat: 23.1328677,
-		lon: 120.28225769999995,
+		lng: 120.28225769999995,
 		vendor: '',
 		title: '善化服務廠',
 		html: '',
@@ -1283,7 +1434,7 @@ window.LocationsPool = [
 	//永康區710
 	{
 		lat: 23.0227453,
-		lon: 120.21923070000003,
+		lng: 120.21923070000003,
 		vendor: '',
 		title: '永康服務廠',
 		html: '',
@@ -1302,7 +1453,7 @@ window.LocationsPool = [
 	},
 	{
 		lat: 23.021567,
-		lon: 120.26162629999999,
+		lng: 120.26162629999999,
 		vendor: '',
 		title: '永大服務廠',
 		html: '',
@@ -1322,7 +1473,7 @@ window.LocationsPool = [
 	//新營區730
 	{
 		lat: 23.3085322,
-		lon: 120.30522580000002,
+		lng: 120.30522580000002,
 		vendor: '',
 		title: '新營服務廠',
 		html: '',
@@ -1342,7 +1493,7 @@ window.LocationsPool = [
 	//仁德區730
 	{
 		lat: 22.9706654,
-		lon: 120.26009249999993,
+		lng: 120.26009249999993,
 		vendor: '',
 		title: '仁德服務廠',
 		html: '',
@@ -1362,15 +1513,15 @@ window.LocationsPool = [
 ];
 
 testObj = function() {
-	fixService: {},
-	beautyService: {},
-	showService: {},
-	addCityToService: function() {
+	this.fixService = {},
+	this.beautyService = {},
+	this.showService = {},
+	addCityToService = function() {
 		
 	},
-	addAreaToCity: function() {
+	addAreaToCity = function() {
 
-	},
+	}
 	
 };
 
