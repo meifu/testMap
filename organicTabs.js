@@ -24,41 +24,36 @@
                     // console.log('nav-one');
                     $('#gmap-menu').css('display', 'block');
                     $('#pano').css('display', 'none');
-                    newMap.SetLocations(LocationsPool, true);
                     $('#controls1').css('display', 'none');
                 } else if (tabClass.hasClass("nav-two")) {
                     // console.log('nav-two');
                     $('#gmap-menu').css('display', 'block');
                     $('#pano').css('display', 'none');
-                    newMap.SetLocations(LocationsPool, true);
                     $('#controls1').css('display', 'none');
                 } else if (tabClass.hasClass("nav-three")) {
                     // console.log('nav-three');
                     $('#gmap-menu').css('display', 'block');
                     $('#pano').css('display', 'none');
-                    // renderSelection(3);
-                    newMap.SetLocations(LocationsPool, true);
                     $('#controls1').css('display', 'none');
                 } else if (tabClass.hasClass("nav-four")) {
+                    $('#controls1').css('display', 'none');
                     $('#gmap-menu').css('display', 'none');
                     $('#pano').css('display', 'block');
-                    var fenway = new google.maps.LatLng(24.973733,121.236494);
-                    var mapOptions = {
-                        center: fenway,
-                        zoom: 14,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
-                    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-                    var panoramaOptions = {
-                        position: fenway,
-                        pov: {
-                            heading: 34,
-                            pitch: 10,
-                            zoom: 1
-                        }, 
-                    };
-                    var panorama = new  google.maps.StreetViewPanorama(document.getElementById("pano"), panoramaOptions);
-                    map.setStreetView(panorama);
+
+                    var chungLi = new google.maps.LatLng(24.973733,121.236494);
+                    var panoLocs = {
+                        "chungli": new google.maps.LatLng(24.973733,121.236494),
+                        "hsindien": new google.maps.LatLng(24.978122,121.545444)
+                    }
+                    
+                    renPano(panoLocs['chungli']);
+                    $('.showRoomBtn').bind('click', function(e){
+                        e.preventDefault();
+                        // console.log('showroom id ' + $(e.target).attr('id') );
+                        // panoramaOptions.position = panoLocs[$(e.target).attr('id')];
+                        renPano(panoLocs[$(e.target).attr('id')]);
+                    });
+                    
                 }
             
                 // Figure out current list via CSS class
