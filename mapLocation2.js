@@ -101,7 +101,7 @@ jQuery.ajax({
 	areas = json.areas;
 	reproduce();
 }).fail(function(){
-
+	alert('failed to get locations');
 });
 
 services.forEach(function(item, index){
