@@ -13,7 +13,7 @@ var locObj = function(lat, lon, title, address, phone, time, city, area) {
 	this.city = city || '',
 	this.area = area || '',
 	this.html = '<h3>' + title + '</h3><p>' + address + '</p><p>' + phone + '</p><p>' + time + '</p>',
- 	this.icon = 'map_icon.png'
+ 	this.icon = ''
 };
 
 var services = ['fixService', 'beautyService', 'showService'];
